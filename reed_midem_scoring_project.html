@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead Scoring - Reed Midem - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+        }
+
+        header {
+            background: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .back-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: gap 0.3s;
+        }
+
+        .back-link:hover {
+            gap: 12px;
+        }
+
+        .hero-project {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 80px 30px;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-category {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            opacity: 0.95;
+            max-width: 800px;
+            line-height: 1.6;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 40px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .meta-label {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .meta-value {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 30px;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .content-section h2 {
+            font-size: 32px;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .content-section h3 {
+            font-size: 24px;
+            margin: 30px 0 15px;
+            color: #333;
+        }
+
+        .content-section p {
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .content-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .content-section li {
+            padding: 12px 0 12px 30px;
+            position: relative;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .content-section li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .tech-badge {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            color: #667eea;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .dashboard-preview {
+            width: 100%;
+            border-radius: 15px;
+            margin-top: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            background: #f5f5f5;
+        }
+
+        .dashboard-preview img {
+            width: 100%;
+            height: auto;
+            display: block;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            cursor: zoom-in;
+            transition: transform 0.3s;
+        }
+
+        .dashboard-preview img:hover {
+            transform: scale(1.02);
+        }
+
+        .process-steps {
+            display: grid;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .step {
+            display: flex;
+            gap: 20px;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .step-number {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .step-content h4 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .step-content p {
+            margin: 0;
+            color: #666;
+        }
+		
+		.code-section {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 30px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin-top: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #3e3e3e;
+        }
+
+        .code-filename {
+            color: #4ec9b0;
+            font-weight: 600;
+        }
+
+        .code-lang {
+            color: #9cdcfe;
+            font-size: 12px;
+        }
+
+        .code-comment {
+            color: #6a9955;
+        }
+
+        .code-keyword {
+            color: #569cd6;
+        }
+
+        .code-string {
+            color: #ce9178;
+        }
+
+        .code-function {
+            color: #dcdcaa;
+        }
+
+        .architecture-diagram {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            padding: 40px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+
+        .flow-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .flow-box {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .flow-icon {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .flow-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .flow-desc {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .flow-arrow {
+            font-size: 24px;
+            color: #667eea;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .highlight-box h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .highlight-box p {
+            color: rgba(255, 255, 255, 0.95);
+            margin: 0;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 50px;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            color: white;
+            background: none;
+            -webkit-text-fill-color: white;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+            font-size: 18px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .btn-white {
+            background: white;
+            color: #667eea;
+        }
+
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 32px;
+            }
+
+            .content-section {
+                padding: 30px 25px;
+            }
+
+            .project-meta {
+                gap: 20px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .flow-container {
+                flex-direction: column;
+            }
+
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">DataAnalyst</div>
+            <a href="index.html" class="back-link">← Retour au portfolio</a>
+        </nav>
+    </header>
+
+    <div class="hero-project">
+        <div class="hero-content">
+            <div class="project-category">Marketing Automation • Lead Scoring • Python</div>
+            <h1>Système de Lead Scoring Automatisé</h1>
+            <p>Mise en place d'un système de scoring automatisé pour évaluer la qualité et le niveau d'intérêt des prospects, avec intégration complète entre Eloqua, Salesforce et Power BI.</p>
+            
+            <div class="project-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Client</span>
+                    <span class="meta-value">Reed Midem (RX France)</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Durée</span>
+                    <span class="meta-value">6 mois</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Année</span>
+                    <span class="meta-value">2021</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Rôle</span>
+                    <span class="meta-value">Data Analyst</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content-section">
+            <h2>Contexte et enjeux</h2>
+            <p>Reed Midem (aujourd'hui RX France), organisateur de salons professionnels internationaux de premier plan (MIPIM, MIPCOM, MAPIC, etc.), faisait face à un défi majeur : identifier efficacement les prospects les plus qualifiés parmi des milliers de contacts générés lors de campagnes marketing.</p>
+            
+            <p>Sans système de scoring automatisé, les équipes commerciales consacraient un temps considérable à analyser manuellement les prospects, ce qui entraînait une perte d'efficacité et des opportunités manquées. Le processus de qualification était long, subjectif et ne permettait pas de prioriser les actions de prospection.</p>
+
+            <div class="highlight-box">
+                <h3>🎯 Objectif principal</h3>
+                <p>En identifiant précisément les prospects les plus prometteurs, permettre aux commerciaux de concentrer leur temps et leur énergie sur les opportunités qui ont le plus de chances d'aboutir, pour des taux de conversion significativement améliorés.</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">15K+</div>
+                    <div class="stat-label">Prospects scorés</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Niveaux de scoring</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">Événements suivis</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">Auto</div>
+                    <div class="stat-label">Mise à jour quotidienne</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Architecture de la solution</h2>
+            <p>Le système de lead scoring repose sur une architecture intégrée connectant quatre plateformes clés :</p>
+
+            <div class="architecture-diagram">
+                <div class="flow-container">
+                    <div class="flow-box">
+                        <div class="flow-icon">📧</div>
+                        <div class="flow-title">Eloqua</div>
+                        <div class="flow-desc">Calcul du score basé sur l'engagement (ouvertures, clics, téléchargements)</div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-box">
+                        <div class="flow-icon">☁️</div>
+                        <div class="flow-title">Salesforce</div>
+                        <div class="flow-desc">Stockage et gestion des Campaign Members avec statuts</div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-box">
+                        <div class="flow-icon">🐍</div>
+                        <div class="flow-title">Python Script</div>
+                        <div class="flow-desc">Synchronisation automatique des scores et statuts</div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-box">
+                        <div class="flow-icon">📊</div>
+                        <div class="flow-title">Power BI</div>
+                        <div class="flow-desc">Visualisation et suivi des performances du scoring</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Dashboard Power BI - Vue d'ensemble</h2>
+            <p>Le rapport Power BI "Scoring" offre une vision complète de l'activité de lead scoring avec des indicateurs clés de performance permettant d'évaluer l'efficacité du processus de qualification.</p>
+            
+            <div class="dashboard-preview">
+                <img src="https://drive.google.com/thumbnail?id=1MNxQFZtHz9jZrayRUKeNMAZcl_VvhuC0&sz=w2000" alt="Dashboard Power BI - Lead Scoring Overview">
+            </div>
+            
+            
+	<h3>Indicateurs clés du dashboard</h3>
+            <ul>
+                <li><strong>Score 1 (last) :</strong> Nombre de prospects en Score 1 - niveau d'intérêt élevé</li>
+                <li><strong>Score 2 (last) :</strong> Nombre de prospects actuellement en Score 2 - niveau d'intérêt initial</li>
+                <li><strong>Worked :</strong> Nombre de prospects traités par les équipes commerciales</li>
+                <li><strong>Back to Not Started (last) :</strong> Prospects retournés au statut initial après réévaluation</li>
+                <li><strong>Scored Campaign Members (last) :</strong> Répartition des prospects scorés par événement</li>
+                <li><strong>Campaign Member Worked after being scored :</strong> Suivi de la prise en charge commerciale post-scoring</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Logique de scoring et statuts</h2>
+            <p>Le système utilise une logique de scoring à 4 niveaux (1, 2, 3, 4) calculée dans Eloqua qui se traduit en statuts Salesforce spécifiques grâce au script Python d'automatisation :</p>
+
+            <h3>Règles de transition des statuts</h3>
+            <ul>
+                <li><strong>Score 1 :</strong> "UQ - Not started" ou "QCB - Score 2" → "QCB - Score 1" (Engagement fort confirmé)</li>
+                <li><strong>Score 2 :</strong> "UQ - Not started" → "QCB - Score 2" (Premier niveau d'engagement détecté)</li>
+                <li><strong>Score 3 ou 4 :</strong> Retour automatique à "UQ - Not started" (Désengagement du prospect)</li>
+                <li><strong>Progression :</strong> "QCB - Score 2" → "QCB - Score 1" (Amélioration du niveau d'engagement)</li>
+            </ul>
+
+            <h3>Événements couverts</h3>
+            <p>Le système de scoring couvre les principaux salons Reed Midem :</p>
+            <div class="tech-stack">
+                <span class="tech-badge">MIPIM</span>
+                <span class="tech-badge">MIPCOM</span>
+                <span class="tech-badge">MIPTV</span>
+                <span class="tech-badge">MAPIC</span>
+                <span class="tech-badge">MAPIC Italy</span>
+                <span class="tech-badge">Propel by MIPIM</span>
+                <span class="tech-badge">Esports BAR</span>
+                <span class="tech-badge">MIPJUNIOR</span>
+            </div>
+        </div>
+		
+		     <div class="content-section">
+            <h2>Script Python d'automatisation</h2>
+            <p>Le cœur du système repose sur un script Python qui automatise la synchronisation entre les différentes plateformes.</p>
+
+            <div class="code-section">
+                <div class="code-header">
+                    <span class="code-filename">📄 Lead_Scoring.py (extraits) </span>
+                    <span class="code-lang">Python 3.x</span>
+                </div>
+                <pre><code><span class="code-comment"># Fonction principale : Récupération des Campaign Members à mettre à jour</span>
+<span class="code-keyword">def</span> <span class="code-function">ls_cm_status</span>():
+    <span class="code-comment"># Connexion à la base de données Salesforce</span>
+    server = <span class="code-string">'XXX'</span>
+    database = <span class="code-string">'YYY'</span>
+    cnxn = pyodbc.<span class="code-function">connect</span>(connection_string)
+    
+    <span class="code-comment"># Requête SQL complexe avec logique de scoring</span>
+    SQL = <span class="code-string">"""
+    SELECT 
+        Event_Edition, Event_Name, Event_Year,
+        CM_ID AS CampaignMemberID,
+        Status AS Old_Status,
+        <span class="code-comment">-- Logique de transition des statuts selon le score Eloqua</span>
+        CASE 
+            WHEN Status = 'UQ - Not started' AND Score = '1' 
+                THEN 'QCB - Score 1'
+            WHEN Status = 'UQ - Not started' AND Score = '2' 
+                THEN 'QCB - Score 2'
+            WHEN Status = 'QCB - Score 2' AND Score = '1' 
+                THEN 'QCB - Score 2'
+            <span class="code-comment">-- Désengagement : retour au statut initial</span>
+            WHEN Score IN ('3','4') 
+                THEN 'UQ - Not started'
+        END AS New_Status
+    FROM Campaign_Members
+    JOIN Custom_Attributes ON ...
+    WHERE Attribute_Date > GETDATE() - 30
+    """</span>
+    
+    df = pd.<span class="code-function">read_sql_query</span>(SQL, cnxn)
+    <span class="code-keyword">return</span> df
+
+<span class="code-comment"># Insertion dans la table de reporting Power BI</span>
+<span class="code-keyword">def</span> <span class="code-function">insert_Lead_Scoring</span>():
+    cnxn = pyodbc.<span class="code-function">connect</span>(staging_connection)
+    crsr = cnxn.<span class="code-function">cursor</span>()
+    crsr.fast_executemany = <span class="code-keyword">True</span>
+    
+    crsr.<span class="code-function">executemany</span>(
+        <span class="code-string">"INSERT INTO Lead_Scoring VALUES (?, ?, ...)"</span>,
+        <span class="code-function">list</span>(cm_status.<span class="code-function">itertuples</span>())
+    )
+    crsr.<span class="code-function">commit</span>()
+
+<span class="code-comment"># Mise à jour Salesforce via DemandTools</span>
+subprocess.<span class="code-function">Popen</span>([demandtools_exe, scenario_file, data_file])</code></pre>
+            </div>
+
+            <h3>Fonctionnalités du script</h3>
+            <ul>
+                <li><strong>Extraction automatique :</strong> Récupération des scores Eloqua depuis les Custom Attributes Salesforce</li>
+                <li><strong>Logique métier :</strong> Application des règles de transition de statuts selon le score</li>
+                <li><strong>Double destination :</strong> Insertion dans la table Lead_Scoring (Power BI) et mise à jour des Campaign Members (Salesforce)</li>
+                <li><strong>Gestion des erreurs :</strong> Système de logs et notifications email en cas d'échec</li>
+                <li><strong>Filtrage temporel :</strong> Ne traite que les scores des 30 derniers jours pour optimiser les performances</li>
+                <li><strong>DemandTools :</strong> Utilisation d'un outil ETL pour la mise à jour en masse dans Salesforce</li>
+            </ul>
+        </div>
+
+
+        <div class="content-section">
+            <h2>Méthodologie et réalisation</h2>
+            
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Analyse des besoins et définition du modèle de scoring</h4>
+                        <p>Collaboration avec les équipes marketing et commerciales pour définir les critères de qualification et les niveaux de scoring pertinents pour chaque type d'événement.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Configuration Eloqua</h4>
+                        <p>Mise en place du modèle de lead scoring dans Eloqua basé sur les interactions (ouvertures d'emails, clics, téléchargements, visites de pages) avec attribution de points et définition des seuils.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Paramétrage Salesforce</h4>
+                        <p>Création des Custom Attributes pour stocker les scores Eloqua, configuration des statuts Campaign Member et définition des règles de validation.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Développement du script Python</h4>
+                        <p>Création du script d'automatisation avec logique de scoring, connexion aux bases de données, gestion des erreurs et intégration avec DemandTools pour les mises à jour Salesforce.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h4>Création du dashboard Power BI</h4>
+                        <p>Développement du rapport "Scoring" avec indicateurs clés, visualisations par événement et suivi de la performance du processus de qualification.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <h4>Tests et déploiement</h4>
+                        <p>Phase de tests intensifs sur un échantillon de campagnes, validation des règles de scoring, planification de l'exécution quotidienne automatique et formation des équipes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Technologies utilisées</h2>
+            <div class="tech-stack">
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">Pandas</span>
+                <span class="tech-badge">PyODBC</span>
+                <span class="tech-badge">Eloqua</span>
+                <span class="tech-badge">Salesforce</span>
+                <span class="tech-badge">SQL Server</span>
+                <span class="tech-badge">Power BI</span>
+                <span class="tech-badge">DemandTools</span>
+                <span class="tech-badge">Windows Task Scheduler</span>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Résultats et bénéfices</h2>
+            
+            <h3>Gains opérationnels</h3>
+            <ul>
+                <li>Automatisation complète du processus de qualification des prospects</li>
+                <li>Mise à jour quotidienne automatique des scores dans Salesforce</li>
+                <li>Réduction drastique du temps consacré à la qualification manuelle</li>
+                <li>Priorisation efficace des actions commerciales sur les prospects à fort potentiel</li>
+                <li>Visibilité en temps réel de l'état de qualification des prospects</li>
+            </ul>
+
+            <h3>Gains commerciaux</h3>
+            <ul>
+                <li>Amélioration significative des taux de conversion grâce à une meilleure priorisation</li>
+                <li>Augmentation de la productivité des équipes commerciales</li>
+                <li>Réduction du temps de cycle de vente</li>
+                <li>Meilleure allocation des ressources commerciales sur les opportunités qualifiées</li>
+            </ul>
+
+            <h3>Gains stratégiques</h3>
+            <ul>
+                <li>Données objectives et mesurables pour évaluer la qualité des campagnes marketing</li>
+                <li>Vision claire de l'efficacité du processus de nurturing par événement</li>
+                <li>Capacité à identifier les leviers d'engagement les plus performants</li>
+                <li>Base solide pour l'amélioration continue des stratégies marketing</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Défis techniques et solutions</h2>
+            
+            <h3>Synchronisation multi-plateformes</h3>
+            <p>Intégration complexe entre Eloqua, Salesforce et Power BI avec des formats de données différents. Solution : Développement d'un script Python robuste avec gestion des erreurs et logs détaillés pour assurer la fiabilité.</p>
+
+            <h3>Gestion de la volumétrie</h3>
+            <p>Traitement quotidien de milliers de prospects sur plusieurs événements simultanés. Solution : Optimisation des requêtes SQL, filtrage sur 30 jours glissants et utilisation de DemandTools pour les mises à jour en masse.</p>
+
+            <h3>Règles métier complexes</h3>
+            <p>Logique de transition de statuts différente selon les événements et les comportements. Solution : Modélisation claire des règles dans le code avec commentaires détaillés et tests unitaires exhaustifs.</p>
+
+            <h3>Fiabilité et monitoring</h3>
+            <p>Nécessité d'assurer le bon fonctionnement quotidien sans intervention manuelle. Solution : Système de notifications email en cas d'erreur, logs détaillés et planification via Windows Task Scheduler.</p>
+        </div>
+
+        <div class="content-section cta-section">
+            <h2>Un projet d'automatisation marketing ?</h2>
+            <p>Je peux vous accompagner dans la mise en place de systèmes de lead scoring, l'intégration de plateformes marketing et le développement de dashboards de pilotage.</p>
+            <div class="cta-buttons">
+                <a href="index.html#contact" class="btn btn-white">Discutons de votre projet</a>
+                <a href="index.html#projets" class="btn btn-outline">Voir d'autres projets</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
