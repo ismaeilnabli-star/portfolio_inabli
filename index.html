@@ -1010,25 +1010,43 @@
     </section>
 	
 	<script>
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const form = this;
+        const formData = new FormData(form);
+        
+        try {
+            // Envoyer les données à Formspree
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
             
-            // Afficher le message de succès
-            const successMessage = document.getElementById('successMessage');
-            successMessage.classList.add('show');
-            
-            // Réinitialiser le formulaire
-            this.reset();
-            
-            // Faire défiler vers le message de succès
-            successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            
-            // Masquer le message après 5 secondes
-            setTimeout(function() {
-                successMessage.classList.remove('show');
-            }, 5000);
-        });
-    </script>
+            if (response.ok) {
+                // Afficher le message de succès
+                const successMessage = document.getElementById('successMessage');
+                successMessage.classList.add('show');
+                
+                // Réinitialiser le formulaire
+                form.reset();
+                
+                // Faire défiler vers le message de succès
+                successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                
+                // Masquer le message après 5 secondes
+                setTimeout(function() {
+                    successMessage.classList.remove('show');
+                }, 5000);
+            }
+        } catch (error) {
+            alert('Une erreur est survenue. Veuillez réessayer.');
+        }
+    });
+	</script>
 	
     <footer>
         <p>&copy; 2025 Ismaël Nabli - Consultant BI / Expert Power BI. Tous droits réservés.</p>
