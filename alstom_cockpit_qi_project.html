@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cockpit QI - Alstom Crespin - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+        }
+
+        header {
+            background: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .back-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: gap 0.3s;
+        }
+
+        .back-link:hover {
+            gap: 12px;
+        }
+
+        .hero-project {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 80px 30px;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-category {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            opacity: 0.95;
+            max-width: 800px;
+            line-height: 1.6;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 40px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .meta-label {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .meta-value {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 30px;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .content-section h2 {
+            font-size: 32px;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .content-section h3 {
+            font-size: 24px;
+            margin: 30px 0 15px;
+            color: #333;
+        }
+
+        .content-section p {
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .content-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .content-section li {
+            padding: 12px 0 12px 30px;
+            position: relative;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .content-section li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .tech-badge {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            color: #667eea;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .dashboard-preview {
+			width: 75%;
+            border-radius: 15px;
+            margin-top: 30px;
+			margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            overflow: visible;
+            background: #f5f5f5;
+			
+			
+        }
+
+        .dashboard-preview img {
+            width: 100%;
+            height: auto;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+			cursor: zoom-in;
+            transition: transform 0.3s;
+        }
+
+        .dashboard-preview img:hover {
+            transform: scale(1.09);
+        }
+
+        .dashboard-title {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            padding: 15px 20px;
+            font-weight: 600;
+            color: #667eea;
+            margin-top: 30px;
+            border-left: 4px solid #667eea;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .process-steps {
+            display: grid;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .step {
+            display: flex;
+            gap: 20px;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .step-number {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .step-content h4 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .step-content p {
+            margin: 0;
+            color: #666;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .highlight-box h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .highlight-box p {
+            color: rgba(255, 255, 255, 0.95);
+            margin: 0;
+        }
+
+        .indicators-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .indicator-item {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 3px solid #667eea;
+        }
+
+        .indicator-name {
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+
+        .indicator-desc {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 50px;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            color: white;
+            background: none;
+            -webkit-text-fill-color: white;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+            font-size: 18px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .btn-white {
+            background: white;
+            color: #667eea;
+        }
+
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 32px;
+            }
+
+            .content-section {
+                padding: 30px 25px;
+            }
+
+            .project-meta {
+                gap: 20px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Consultant Power BI Senior</div>
+            <a href="index.html" class="back-link">← Retour au portfolio</a>
+        </nav>
+    </header>
+
+    <div class="hero-project">
+        <div class="hero-content">
+            <div class="project-category">Industrie • Power BI • Qualité</div>
+            <h1>Cockpit QI - Pilotage Qualité Industrielle</h1>
+            <p>Digitalisation complète du reporting qualité pour le site de production d'Alstom Crespin : centralisation des indicateurs AQP/AQL, tableaux de bord interactifs et automatisation du suivi des non-conformités pour les trains régionaux, RER et métros.</p>
+            
+            <div class="project-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Client</span>
+                    <span class="meta-value">Alstom - Site Crespin</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Durée</span>
+                    <span class="meta-value">3 mois</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Période</span>
+                    <span class="meta-value">Avril - Juillet 2025</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Rôle</span>
+                    <span class="meta-value">Consultant Power BI</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content-section">
+            <h2>Contexte du projet</h2>
+            <p>Alstom, leader mondial de la mobilité ferroviaire, opère sur son site de Crespin la production et la maintenance de trains régionaux, RER et métros. Le suivi qualité de ces productions stratégiques reposait sur un système fragmenté de fichiers Excel individuels, un par responsable qualité.</p>
+            
+            <p>Bien que les données soient extraites automatiquement des systèmes de production vers des fichiers Excel, leur exploitation restait complexe et chronophage. Cette situation limitait la capacité des équipes à identifier rapidement les problèmes qualité, à analyser les tendances et à prendre des décisions éclairées.</p>
+
+            <div class="highlight-box">
+                <h3>🎯 Objectifs du projet</h3>
+                <p>Centraliser, uniformiser et enrichir le reporting qualité via Power BI pour améliorer la fiabilité et l'exploitation des indicateurs AQP (Assurance Qualité Produit) et AQL (Acceptable Quality Level), et faciliter le pilotage collaboratif entre les équipes Qualité et Production.</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Pages de rapport</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Indicateurs suivis</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">10</div>
+                    <div class="stat-label">Sources de données</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Automatisation</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Rapport Power BI - Pages principales</h2>
+            
+            <div class="dashboard-title">Page Accueil - Navigation centralisée</div>
+            <div class="dashboard-preview">
+                <img src="https://drive.google.com/thumbnail?id=1YWS21giruA8p5lusOLa9aFTp5mZtgwLc&sz=w3000" alt="Page Accueil Cockpit QI">
+            </div>
+            <p>La page d'accueil offre une vue d'ensemble avec des filtres globaux (Projet, Date, Type de véhicule, Région, Rame, Station de travail, Responsabilité, Origine, Localisation, Criticité) permettant une navigation intuitive vers les différentes analyses.</p>
+
+            <div class="dashboard-title">Page Dashboard - Vue synthétique des indicateurs clés</div>
+            <div class="dashboard-preview">
+                <img src="https://drive.google.com/thumbnail?id=1CM3wyrxn3raf1J79G9HujEjiL8ghmbr0&sz=w2000" alt="Page Dashboard Cockpit QI">
+            </div>
+			<p>
+            <p>Le dashboard présente en temps réel les indicateurs critiques : aléas ouverts, ordres de fabrication en cours, retouches à effectuer, actions démarrées et rapports de non-conformité (RNC). Cette vue permet une prise de décision rapide et éclairée.</p>
+			</p>
+		</div>
+
+        <div class="content-section">
+            <h2>Structure du rapport</h2>
+            <p>Le rapport Cockpit QI est organisé en 12 pages thématiques répondant aux besoins spécifiques des équipes qualité :</p>
+
+            <h3>Pages opérationnelles</h3>
+            <div class="indicators-grid">
+                <div class="indicator-item">
+                    <div class="indicator-name">📋 Accueil</div>
+                    <div class="indicator-desc">Point d'entrée avec filtres globaux et navigation</div>
+                </div>
+                <div class="indicator-item">
+                    <div class="indicator-name">📊 Dashboard</div>
+                    <div class="indicator-desc">Vue synthétique des KPI : aléas, OF, retouches, actions, RNC</div>
+                </div>
+                <div class="indicator-item">
+                    <div class="indicator-name">📝 Report</div>
+                    <div class="indicator-desc">Détails par onglets : Aléas, Retouches, Actions, OF, RNC avec photos des défauts</div>
+                </div>
+                <div class="indicator-item">
+                    <div class="indicator-name">⚠️ RNC</div>
+                    <div class="indicator-desc">Suivi des rapports de non-conformité par responsabilité</div>
+                </div>
+            </div>
+
+            <h3>Pages d'analyse qualité</h3>
+            <div class="indicators-grid">
+                <div class="indicator-item">
+                    <div class="indicator-name">🔍 Top RNC Fournisseur</div>
+                    <div class="indicator-desc">Analyse des non-conformités fournisseurs externes</div>
+                </div>
+                <div class="indicator-item">
+                    <div class="indicator-name">📈 AQP Défauts</div>
+                    <div class="indicator-desc">Indicateurs Assurance Qualité Produit : défauts par contrôle et DPU</div>
+                </div>
+                <div class="indicator-item">
+                    <div class="indicator-name">📉 AQL Défauts</div>
+                    <div class="indicator-desc">Niveau de Qualité Acceptable : demerit externe et comparaison PC9/PC11</div>
+                </div>
+                <div class="indicator-item">
+                    <div class="indicator-name">🔬 AQL Analyse Défauts</div>
+                    <div class="indicator-desc">Analyse détaillée par famille et code défaut (dont procédés spéciaux)</div>
+                </div>
+                <div class="indicator-item">
+                    <div class="indicator-name">🌍 Origine Défauts</div>
+                    <div class="indicator-desc">Matrice d'origine par localisation, station, responsabilité</div>
+                </div>
+                <div class="indicator-item">
+                    <div class="indicator-name">📅 Evolution</div>
+                    <div class="indicator-desc">Tendances temporelles avec axes d'analyse multiples</div>
+                </div>
+                <div class="indicator-item">
+                    <div class="indicator-name">⚙️ OQM</div>
+                    <div class="indicator-desc">Suivi des Ordres Qualité Modification et heures associées</div>
+                </div>
+                <div class="indicator-item">
+                    <div class="indicator-name">🎯 PCX</div>
+                    <div class="indicator-desc">Points de Contrôle : statuts PC02, PC09, PC11</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Réalisations et livrables</h2>
+            
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Animation d'ateliers et cadrage</h4>
+                        <p>Organisation de sessions collaboratives avec les équipes Qualité et IT pour identifier les besoins métiers, cartographier les sources de données et définir les indicateurs clés de performance à suivre.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Maquettage visuel et conception UX</h4>
+                        <p>Création des maquettes des pages du rapport, définition de l'ergonomie et ajout de nouveaux indicateurs pertinents non présents dans l'ancien système Excel.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Modélisation et transformation des données</h4>
+                        <p>Création et modélisation du dataset Power BI à partir des fichiers Excel SharePoint. Transformation des données via Power Query et création de mesures DAX complexes pour les calculs d'indicateurs AQP/AQL.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Développement des rapports interactifs</h4>
+                        <p>Construction des 12 pages du rapport avec visualisations interactives, drill-through, tooltips personnalisés et extraction de données (photos des défauts). Garantie de la cohérence et de la fiabilité des analyses.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h4>Recettes et validation</h4>
+                        <p>Présentations hebdomadaires des développements aux responsables Qualité, recueil des feedbacks, ajustements itératifs et validation fonctionnelle progressive de chaque page du rapport.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <h4>Documentation et formation</h4>
+                        <p>Rédaction des spécifications fonctionnelles détaillées (SFD - 40 pages), formation des utilisateurs finaux à Power BI Service et à l'utilisation des rapports interactifs.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">7</div>
+                    <div class="step-content">
+                        <h4>Mise en production et pérennisation</h4>
+                        <p>Déploiement du rapport sur Power BI Service, définition des rôles de maintenance, documentation des procédures d'actualisation des données et transfert de compétences pour assurer la continuité après la mission.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+		<div class="content-section">
+            <h2>Indicateurs clés développés</h2>
+            <p>Le rapport intègre une bibliothèque riche d'indicateurs qualité essentiels :</p>
+
+            <h3>Indicateurs de défauts</h3>
+            <ul>
+                <li><strong>Nb de défauts :</strong> Somme des quantités d'aléas qualité détectés</li>
+                <li><strong>DPU Rame :</strong> Defects Per Unit calculé par rame/véhicule</li>
+                <li><strong>Nb d'Aléas PC9/PC10/PC11 :</strong> Défauts par type de contrôle (fin de ligne, acceptation)</li>
+                <li><strong>Nb d'Aléas inspection client :</strong> Défauts détectés par le client</li>
+                <li><strong>Demerit externe :</strong> Indicateur AQL pondéré par criticité</li>
+            </ul>
+
+            <h3>Indicateurs opérationnels</h3>
+            <ul>
+                <li><strong>Nb Actions / Actions démarrées :</strong> Suivi des actions correctives</li>
+                <li><strong>Nb de Retouches / Retouches à faire :</strong> Volume de travaux de correction</li>
+                <li><strong>Nb OF / OF en cours :</strong> Ordres de fabrication actifs</li>
+                <li><strong>RNC :</strong> Rapports de Non-Conformité ouverts</li>
+                <li><strong>Nb Ordre QM :</strong> Ordres Qualité Modification en cours</li>
+                <li><strong>Temps OQM :</strong> Heures pointées sur les modifications qualité</li>
+            </ul>
+
+            <h3>Mesures fonctionnelles avancées</h3>
+            <ul>
+                <li><strong>Responsable relance :</strong> Calcul automatique selon statuts actions/retouches</li>
+                <li><strong>Ratio PC9-PC11 :</strong> Indicateur de performance des contrôles</li>
+                <li><strong>Top5 codes défauts :</strong> Classement dynamique par effectivité</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Architecture technique</h2>
+            
+            <h3>Sources de données</h3>
+            <ul>
+                <li><strong>Extractions AOS quotidiennes</strong> (1S01_Action, 1S01_Alea, 1S01_Operation, 1S01_Rework) depuis SharePoint</li>
+                <li><strong>Historiques mensuels</strong> extraits de QlikSense (Aléas, OF)</li>
+                <li><strong>Données RNC</strong> consolidées manuellement (KPI NCR mensuel.xlsx)</li>
+                <li><strong>Photos défauts</strong> pour visualisation contextuelle</li>
+                <li><strong>Données OQM</strong> (ordres qualité et temps pointés)</li>
+                <li><strong>Référentiels</strong> (Projets, Type Véhicule, Régions, Contrôles, DefectCode, Responsabilités, Statuts, Origines)</li>
+            </ul>
+
+            <h3>Modélisation Power BI</h3>
+            <ul>
+                <li>Architecture en étoile avec tables de faits et dimensions</li>
+                <li>Actualisation automatique quotidienne pour les sources temps réel</li>
+                <li>Actualisation manuelle mensuelle pour les historiques</li>
+                <li>Mesures DAX organisées dans le dataset DATASET_APQ_APL</li>
+                <li>Relations optimisées pour garantir la performance sur gros volumes</li>
+            </ul>
+        </div>
+		
+        <div class="content-section">
+            <h2>Technologies utilisées</h2>
+            <div class="tech-stack">
+                <span class="tech-badge">Power BI Desktop</span>
+                <span class="tech-badge">Power BI Service</span>
+                <span class="tech-badge">Power Query</span>
+                <span class="tech-badge">DAX</span>
+                <span class="tech-badge">Excel</span>
+                <span class="tech-badge">SharePoint</span>
+                <span class="tech-badge">QlikSense</span>
+                <span class="tech-badge">AOS (Alstom Operating System)</span>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Résultats et bénéfices</h2>
+            
+            <h3>Gains opérationnels</h3>
+            <ul>
+                <li>Centralisation de tous les indicateurs qualité dans un outil unique et accessible</li>
+                <li>Réduction significative du temps de consolidation des données (de plusieurs heures à quelques minutes)</li>
+                <li>Actualisation automatisée quotidienne des indicateurs en temps réel</li>
+                <li>Élimination des risques d'erreurs liés aux manipulations manuelles de fichiers Excel</li>
+                <li>Vision partagée et cohérente entre les équipes Qualité et Production</li>
+            </ul>
+
+            <h3>Gains analytiques</h3>
+            <ul>
+                <li>Identification rapide des défauts critiques et des tendances qualité grâce aux visualisations interactives</li>
+                <li>Analyses multicritères (par projet, rame, station de travail, responsabilité, origine)</li>
+                <li>Traçabilité complète avec accès direct aux photos des défauts</li>
+                <li>Suivi précis des RNC fournisseurs et classement des principales non-conformités</li>
+                <li>Tableaux de bord AQP/AQL (DPU, demerit, ratios) conformes aux standards industriels</li>
+            </ul>
+
+            <h3>Gains organisationnels</h3>
+            <ul>
+                <li>Autonomie des équipes qualité sur Power BI Service après formation</li>
+                <li>Documentation complète (SFD de 40 pages) facilitant la maintenance et les évolutions futures</li>
+                <li>Procédures claires pour l'actualisation des données et l'ajout de nouveaux indicateurs</li>
+                <li>Base solide pour l'amélioration continue du processus qualité</li>
+                <li>Transfert de compétences assurant la pérennisation de la solution</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Défis techniques et solutions</h2>
+            
+            <h3>Hétérogénéité des sources</h3>
+            <p>Les données provenaient de multiples systèmes (AOS, QlikSense, fichiers Excel manuels) avec des formats et fréquences d'actualisation différents. Solution : Création d'un modèle de données unifié avec gestion différenciée des actualisations (automatique quotidienne vs manuelle mensuelle).</p>
+
+            <h3>Complexité des règles métier</h3>
+            <p>Les calculs d'indicateurs AQP/AQL nécessitaient des règles métier complexes (DPU par rame, demerit pondéré, responsable de relance selon statuts multiples). Solution : Développement de mesures DAX modulaires et documentées, avec validation itérative par les experts qualité.</p>
+
+            <h3>Performance sur gros volumes</h3>
+            <p>Le rapport devait traiter des milliers d'aléas, retouches et ordres de fabrication avec filtres interactifs fluides. Solution : Modélisation optimisée en étoile, agrégations pré-calculées et gestion efficace des relations entre tables.</p>
+
+            <h3>Extraction des photos de défauts</h3>
+            <p>Nécessité d'intégrer la visualisation contextuelle des photos de défauts depuis le rapport. Solution : Utilisation de la fonctionnalité drill-through avec extraction personnalisée permettant d'accéder aux images associées aux aléas.</p>
+        </div>
+
+        <div class="content-section cta-section">
+            <h2>Un projet Power BI industriel ?</h2>
+            <p>Je peux vous accompagner dans la digitalisation de vos processus qualité et la création de tableaux de bord Power BI adaptés à votre secteur industriel.</p>
+            <div class="cta-buttons">
+                <a href="index.html#contact" class="btn btn-white">Discutons de votre projet</a>
+                <a href="index.html#projets" class="btn btn-outline">Voir d'autres projets</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
