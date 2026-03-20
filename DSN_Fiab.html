@@ -409,7 +409,7 @@
         <div class="hero-content">
             <div class="project-category">Business Intelligence • Power BI</div>
             <h1>Fiabilisation DSN : Suivi activité</h1>
-            <p>Développement d'un tableau de bord Power BI pour le suivi des indicateurs de pilotage du processus de fiabilisation des Déclarations Sociales Nominatives pour les Gestionnaires de Paie Spécialisés de l'Agirc-Arrco.</p>
+            <p>Développement d'un tableau de bord Power BI pour le suivi des indicateurs de pilotage du processus de fiabilisation des Déclarations Sociales Nominatives pour la Fédération Agirc-Arrco et les groupes partenaires sociaux (GPS).</p>
             
             <div class="project-meta">
                 <div class="meta-item">
@@ -455,81 +455,125 @@
             </div>
         </div>
 
+        <!-- Section Structure du rapport -->
         <div class="content-section">
-            <h2>Dashboard Power BI - Page de synthèse</h2>
-            <p>Le rapport Power BI développé propose une vue d'ensemble des indicateurs stratégiques du processus de fiabilisation DSN, permettant un suivi en temps réel de la performance des actions de notification et d'accompagnement.</p>
-            
-            <div class="dashboard-preview">
-                <img src="https://drive.google.com/thumbnail?id=1rL0EhwSL-COd9TpX2y4M4CNjEVtG1dyl&sz=w2000" alt="Dashboard Power BI - Fiabilisation DSN">
+            <h2>Structure du rapport</h2>
+            <p class="section-subtitle" style="color:#666; font-size:18px; margin-bottom:40px;">Le rapport "Fiabilisation DSN : Suivi activité" est organisé en 9 pages thématiques couvrant l'ensemble du processus de fiabilisation</p>
+
+            <style>
+                .pages-grid { display: grid; gap: 30px; }
+                .page-row { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; padding: 30px; background: linear-gradient(135deg, rgba(102,126,234,0.03) 0%, rgba(118,75,162,0.03) 100%); border-radius: 15px; border-left: 4px solid #667eea; transition: transform 0.3s, box-shadow 0.3s; }
+                .page-row:hover { transform: translateX(5px); box-shadow: 0 8px 20px rgba(102,126,234,0.15); }
+                .page-info { display: flex; flex-direction: column; justify-content: center; }
+                .page-title { font-size: 20px; font-weight: 600; color: #333; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+                .page-icon { font-size: 24px; }
+                .page-description { color: #666; line-height: 1.6; font-size: 15px; }
+                .page-preview { display: flex; align-items: center; justify-content: center; background: #f5f5f5; border-radius: 10px; overflow: hidden; min-height: 200px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+                .page-preview img { width: 100%; height: auto; display: block; }
+                @media (max-width: 968px) { .page-row { grid-template-columns: 1fr; } .page-preview { min-height: 250px; } }
+            </style>
+
+            <div class="pages-grid">
+
+                <!-- Page 1 : Synthèse -->
+        <div class="page-row">
+            <div class="page-info">
+                <div class="page-title"><span class="page-icon">📊</span><span>Synthèse</span></div>
+                <div class="page-description">Vue d'ensemble stratégique présentant les indicateurs clés du processus : total des montants en écart et notifiés, taux de SIRET notifiés, taux de régularisation, et l'ensemble des indicateurs d'interlocutions entrantes (distribution mail, ouverture, consultation DSN Fiab) et sortantes (prise de contact, appel sortant, relance).</div>
+            </div>
+            <div class="page-preview">
+                <img src="https://drive.google.com/thumbnail?id=1TayguMUNIUI2GUb-WvE77zlybv4t6aZb&sz=w2000" alt="Synthèse">
             </div>
         </div>
 
-        <div class="content-section">
-            <h2>Indicateurs clés de performance</h2>
-            <p>Le dashboard intègre 13 indicateurs essentiels pour piloter le processus de fiabilisation DSN, organisés en plusieurs catégories :</p>
-
-            <h3>Indicateurs financiers et de notification</h3>
-            <div class="indicators-grid">
-                <div class="indicator-card">
-                    <div class="indicator-title">Total montant en écart</div>
-                    <div class="indicator-description">Montant total des écarts notifiables identifiés dans les déclarations sociales</div>
-                </div>
-                <div class="indicator-card">
-                    <div class="indicator-title">Total montant notifiés</div>
-                    <div class="indicator-description">Montant des écarts effectivement notifiés aux entreprises concernées</div>
-                </div>
-                <div class="indicator-card">
-                    <div class="indicator-title">Taux de SIRET en écart notifié</div>
-                    <div class="indicator-description">Pourcentage de SIRET notifiés par rapport aux SIRET en écart (selon seuil de 300€)</div>
-                </div>
-                <div class="indicator-card">
-                    <div class="indicator-title">Taux de régularisation</div>
-                    <div class="indicator-description">Proportion de SIRET notifiés en mois M et régularisés en mois M+1</div>
-                </div>
+        <!-- Page 2 : Cotisations fiables -->
+        <div class="page-row">
+            <div class="page-info">
+                <div class="page-title"><span class="page-icon">💰</span><span>Indicateurs mensuels - Cotisations fiables et fiabilisées</span></div>
+                <div class="page-description">Suivi mensuel du taux de cotisations fiables et fiabilisées avec double jauge (tous GPS et GPS sélectionné), répartition en anneau des montants fiables/fiabilisés, évolution temporelle et analyse par organisation. Permet de mesurer la performance globale de fiabilisation.</div>
             </div>
-
-            <h3>Indicateurs de suivi des mails d'interlocutions entrantes</h3>
-            <div class="indicators-grid">
-                <div class="indicator-card">
-                    <div class="indicator-title">Taux de distribution mail</div>
-                    <div class="indicator-description">Taux de distribution réussie des emails de notification aux SIRET destinataires</div>
-                </div>
-                <div class="indicator-card">
-                    <div class="indicator-title">Taux d'ouverture de mail</div>
-                    <div class="indicator-description">Proportion de SIRET ayant ouvert le mail de notification parmi ceux l'ayant reçu</div>
-                </div>
-                <div class="indicator-card">
-                    <div class="indicator-title">Taux de consultation DSN Fiab</div>
-                    <div class="indicator-description">Pourcentage de SIRET notifiés ayant consulté l'outil DSN Fiabilisation</div>
-                </div>
+            <div class="page-preview">
+                <img src="https://drive.google.com/thumbnail?id=1d4GvtP0MUU664972kVeh-vDSJZJV__bP&sz=w2000" alt="Cotisations fiables et fiabilisées">
             </div>
+        </div>
 
-            <h3>Indicateurs d'interlocutions sortantes</h3>
-            <div class="indicators-grid">
-                <div class="indicator-card">
-                    <div class="indicator-title">Taux de prise de contact</div>
-                    <div class="indicator-description">Proportion de SIRET contactés parmi les SIRET notifiés sans accès DSN Fiab</div>
+        <!-- Page 3 : Montants notifiés -->
+        <div class="page-row">
+            <div class="page-info">
+                <div class="page-title"><span class="page-icon">📈</span><span>Indicateurs mensuels - Montants notifiés et fiabilisés</span></div>
+                <div class="page-description">Analyse du taux de montants notifiés et régularisés avec jauges comparatives, double vue en anneau (répartition montants et focus montants expliqués), graphiques d'évolution temporelle et ventilation par organisation. Focus sur l'efficacité du processus de notification.</div>
+            </div>
+            <div class="page-preview">
+                <img src="https://drive.google.com/thumbnail?id=1dw79Y0MdkeiUVhFtf0Loqkr3p3hiZai8&sz=w2000" alt="Montants notifiés et fiabilisés">
+            </div>
+        </div>
+
+        <!-- Page 4 : Suivi notifications -->
+        <div class="page-row">
+            <div class="page-info">
+                <div class="page-title"><span class="page-icon">📧</span><span>Suivi des notifications</span></div>
+                <div class="page-description">Monitoring détaillé du processus de notification avec indicateurs de taux (SIRET notifiés, avis d'échéance, montants), évolution des notifications dans le temps, suivi spécifique par campagne sélectionnée et tableau détaillé des informations de notification. Uniquement campagnes réelles.</div>
+            </div>
+            <div class="page-preview">
+                <img src="https://drive.google.com/thumbnail?id=1D9sK5CHf3bL5ZBdxiG3ghTQmBs-xxWiG&sz=w2000" alt="Suivi des notifications">
+            </div>
+        </div>
+
+        <!-- Page 5 : Distribution mails -->
+        <div class="page-row">
+            <div class="page-info">
+                <div class="page-title"><span class="page-icon">✉️</span><span>Suivi distribution et efficience des mails</span></div>
+                <div class="page-description">Analyse complète de l'efficacité des campagnes d'emailing : taux de distribution, ouverture, clic, connexion et consultation DSN Fiab. Répartition des destinataires par campagne avec drill-down sur campagne sélectionnée, suivi des évolutions et analyse des types de connexions au portail.</div>
+            </div>
+            <div class="page-preview">
+                <img src="https://drive.google.com/thumbnail?id=1ObuFkRMEsdxqsUjcY-7c4uA_wrekJnqw&sz=w2000" alt="Distribution et efficience des mails">
+            </div>
+        </div>
+
+        <!-- Page 6 : Interlocutions -->
+        <div class="page-row">
+            <div class="page-info">
+                <div class="page-title"><span class="page-icon">📞</span><span>Interlocutions suite à une notification</span></div>
+                <div class="page-description">Page tripartite avec boutons "œil" : interlocutions entrantes (demande rappel, taux rappel sous 8 jours, appel direct avec liste détaillée téléchargeable), sortantes (relance, prise de contact, appel sortant) et résultats d'interlocution avec taux de promesse de régularisation et analyse C Fiab.</div>
+            </div>
+            <div class="page-preview">
+                <img src="https://drive.google.com/thumbnail?id=1z6fapzoHzw7u_1nruUnhROQGFJEBTI9M&sz=w2000" alt="Interlocutions suite à une notification">
+            </div>
+        </div>
+		
+		<!-- Page 7 : Analyses C FIAB -->
+        <div class="page-row">
+            <div class="page-info">
+                <div class="page-title"><span class="page-icon">🔍</span><span>Résultat des analyses C FIAB sur l'exercice</span></div>
+                <div class="page-description">Synthèse des analyses métier réalisées par les équipes C FIAB avec taux de SIRET analysés, répartition des analyses par type, tableaux détaillés des résultats et liste téléchargeable des dossiers forçables et non forcés au compte. Suivi de la qualité des analyses sur l'exercice complet.</div>
+            </div>
+            <div class="page-preview">
+                <img src="https://drive.google.com/thumbnail?id=1u_aMImNd6YdX2nf1pNZh4vJQKipe6vCr&sz=w2000" alt="Analyses C FIAB">
+            </div>
+        </div>
+
+        <!-- Page 8 : Taux régularisation -->
+        <div class="page-row">
+            <div class="page-info">
+                <div class="page-title"><span class="page-icon">✅</span><span>Taux de régularisation</span></div>
+                <div class="page-description">Indicateurs de performance finale avec taux de régularisation global et après relance, graphiques multiples (par SIRET régularisés et par montant d'écart) avec switch graphique/tableau, et liste détaillée téléchargeable des SIRET notifiés non fiabilisés sur la dernière campagne terminée.</div>
+            </div>
+            <div class="page-preview">
+                <img src="https://drive.google.com/thumbnail?id=1AeN-om4VdRUeEMsIA0Y3MLbIoax6-s5Z&sz=w2000" alt="Taux de régularisation">
+            </div>
+        </div>
+
+        <!-- Page 9 : Définitions -->
+        <div class="page-row">
+            <div class="page-info">
+                <div class="page-title"><span class="page-icon">ℹ️</span><span>Définitions et aide</span></div>
+                <div class="page-description">Page d'aide accessible via bouton guide sur chaque onglet, proposant 3 tableaux consultables via boutons "œil" : définitions détaillées de tous les indicateurs par page, description des objectifs métier des listes détaillées, et calendrier des dates de campagne avec périodes DSN et dates de déploiement.</div>
+            </div>
+            <div class="page-preview">
+                <img src="https://drive.google.com/thumbnail?id=1vrwLs14i7ZpoJFYCXqiS85j8uo5JViM_&sz=w2000" alt="Définitions et aide">
+                    </div>
                 </div>
-                <div class="indicator-card">
-                    <div class="indicator-title">Taux d'appel en direct</div>
-                    <div class="indicator-description">Pourcentage de SIRET notifiés ayant appelé directement les services</div>
-                </div>
-                <div class="indicator-card">
-                    <div class="indicator-title">Taux d'appel sortant</div>
-                    <div class="indicator-description">Proportion de SIRET avec accès DSN Fiab contactés proactivement sans demande</div>
-                </div>
-                <div class="indicator-card">
-                    <div class="indicator-title">Taux de demande de rappel</div>
-                    <div class="indicator-description">Pourcentage de SIRET notifiés demandant une analyse de leur situation</div>
-                </div>
-                <div class="indicator-card">
-                    <div class="indicator-title">Taux de rappel sous 8 jours</div>
-                    <div class="indicator-description">Respect du délai de rappel de 8 jours pour les demandes de contact</div>
-                </div>
-                <div class="indicator-card">
-                    <div class="indicator-title">Taux de relance</div>
-                    <div class="indicator-description">Proportion de SIRET relancés et traités parmi ceux nécessitant une relance</div>
-                </div>
+
             </div>
         </div>
 
@@ -624,13 +668,13 @@
             <h2>Défis techniques et solutions</h2>
             
             <h3>Complexité des règles métier</h3>
-            <p>Les indicateurs nécessitaient des calculs complexes avec de nombreuses conditions métier spécifiques. Solution : Création de mesures DAX modulaires et documentées, permettant une maintenance facilitée.</p>
+            <p>Les indicateurs nécessitaient des calculs complexes avec de nombreuses conditions métier spécifiques. <br>Solution : Création de mesures DAX modulaires et documentées, permettant une maintenance facilitée.</p>
 
             <h3>Performance et volumétrie</h3>
-            <p>Traitement de volumes importants de données DSN et d'historiques d'interactions. Solution : Optimisation du modèle de données, agrégations préalables et utilisation de tables de dimension efficaces.</p>
+            <p>Traitement de volumes importants de données DSN et d'historiques d'interactions. <br>Solution : Optimisation du modèle de données, agrégations préalables et utilisation de tables de dimension efficaces.</p>
 
             <h3>Évolution des besoins</h3>
-            <p>Le processus de fiabilisation étant en constante amélioration, de nouveaux indicateurs étaient régulièrement demandés. Solution : Architecture modulaire permettant l'ajout facile de nouvelles mesures et visualisations.</p>
+            <p>Le processus de fiabilisation étant en constante amélioration, de nouveaux indicateurs étaient régulièrement demandés. <br>Solution : Architecture modulaire permettant l'ajout facile de nouvelles mesures et visualisations.</p>
         </div>
 	<div class="content-section cta-section">
             <h2>Un projet Power BI à réaliser ?</h2>
